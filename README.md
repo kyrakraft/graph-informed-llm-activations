@@ -1,6 +1,8 @@
 # graph-informed-llm-activations
 Exploring how different methods for providing graph-structured information to an LLM influence its activation space geometry (with activation steering in mind for later).
 
+NOTE: This is a high-level version of this idea, with many things (architectural decisions, eval metrics, assumptions) left to be addressed. Consider it a rough outline of an idea I'd like to explore.
+
 ## Overview of Research Plan
 
 ### Primary Question
