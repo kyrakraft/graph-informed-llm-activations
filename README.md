@@ -1,5 +1,5 @@
 # graph-informed-llm-activations
-Exploring how different methods for providing graph-structured information to an LLM influence its activation space geometry, with the goal of facilitating steering.
+Exploring how different methods for providing graph-structured information to an LLM influence its activation space geometry (with activation steering in mind for later).
 
 ## Overview of Research Plan
 
@@ -7,12 +7,13 @@ Exploring how different methods for providing graph-structured information to an
 How do different methods for providing graph-structured information to an LLM influence its activation space? 
 
 ### Context
-I am interested in exploring ways to nudge an LLM’s activations during reasoning tasks into a less complex and more orderly geometric space. While this has been explored [1, 2, 3, 4], an analysis of approaches on graph-structured knowledge is limited. My hope is that graph-structured knowledge, which is highly structured and topologically intuitive to humans, will make LLM activations more human-interpretable in turn, thereby facilitating steering efforts.
+I am interested in exploring ways to nudge an LLM’s activations during reasoning tasks into a less complex and more orderly geometric space. While this has been explored [1, 2, 3, 4], an analysis of approaches on graph-structured knowledge is limited.
+
+Motivation: My high-level hope is that graph-structured knowledge, which is highly structured, will make an LLM's knowledge representation interpretable and steerable.
 
 Questions include:
 - How does the activation space change when knowledge is learned in-context vs. parametrically?
-- What about when a model is trained on graph embeddings vs. a plain-text linearized graph?
-- How might results change when we test this on multiple LLM sizes? 
+- What about when a model is trained on graph embeddings vs. a plain-text linearized graph? 
 
 I will also track how qualities of the activation spaces correlate with LLM reasoning performance.
 
@@ -41,7 +42,6 @@ For each resulting activation space, I will evaluate its geometric complexity an
 
 Some methods I am considering are 1. computing the above metrics on the original graph embeddings, and qualitatively comparing the graph’s representational geometry to the already-computed activation space’s representational geometry (not looking to find actual value matches, but rather general trends that indicate similarity relative to the baselines); 2. computing the alignment of relational displacement vectors by measuring the cosine similarity between an entity pair’s difference vector in the graph embedding space vs. their corresponding difference vector in the LLM’s activations; and 3. visually comparing the activations and original graph embeddings (e.g. with UMAP).
 
-
 ### References
 [1] Gurnee, W., & Tegmark, M. (2023). Language models represent space and time. arXiv preprint arXiv:2310.02207.
 
@@ -50,3 +50,20 @@ Some methods I am considering are 1. computing the above metrics on the original
 [3] Bigelow, E., Sarfati, R., Wurgaft, D., Lewis, O., McGrath, T., Merullo, J., Geiger, A., & Lubana, E. S. (2026). Stories in space: In-context learning trajectories in conceptual belief space. arXiv preprint arXiv:2605.12412.
 
 [4] Zhao, J., Yang, Y., Hu, X., Tong, J., Lu, Y., Wu, W., Gui, T., Zhang, Q., & Huang, X. (2025). Understanding parametric and contextual knowledge reconciliation within large language models. Advances in Neural Information Processing Systems (NeurIPS), 38. 
+
+
+## Notes, open questions / considerations, additional thoughts
+
+1. What knowledge graph makes the most sense to use? Here are some of my considerations:
+    - Argument a) On one hand, maybe it makes sense to use a KG where the graph structure is not inferable from the semantic information alone. For example, a graph representing lexical taxonomy formalizes a structure that is likely already implicitly represented in the LLM. Would this render “Baseline 1,” an LLM with no supplemental knowledge, flawed (as the LLM would already implicitly contain some of the structural knowledge I am aiming to test the effects of providing it with) and also potentially decrease the gap between in-context and parametric learning methods?
+    - Argument b) On the other hand, the question of how explicit formalization of structure can change the representation space (beyond whatever intrinsic domain structure might be learned implicitly during pre-training) is an interesting thing to test, too. In fact, maybe this is actually more informative.
+    - My current thinking is that (b) is a strong enough argument to warrant using a KG that contains publicly known information. In terms of specific knowledge graphs, I’m considering using a subset of WikiData due to its customizability (I could use a subgraph with both general and niche knowledge).
+2. Graph embedding method?
+   - Different graph embedding methods would yield different activations.
+4. Thoughts on potential evaluation metrics
+   - Are these the right metrics?
+5. Limitations
+   - Various potential confounders...e.g., even if some of the activations do see this result, it does not necessarily mean that the cause is the structure of the graph. 
+7. Other thoughts
+    - Also would be interesting to see how this changes with different LLM sizes, knowledge graph size, type of knowledge graph, and training times and inference times. However, best to save these quesitons for a follow-up project to ensure a narrow-enough scope for this project.
+    - Could also potentially train SAEs on activations...
