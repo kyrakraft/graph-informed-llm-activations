@@ -82,7 +82,7 @@ Additionally, to eliminate some potential confounders, will do:
 - Model size (e.g. comparing results between Gemma-2 2B and 9B)
 - SAE analysis to examine which sparse features activate on graph entities across conditions
 - Combining in-context learning with the fine-tuning methods
-- Head-ablation test, extending [11, 12]. Identify previous-token heads and zero-ablate the top-k in both the in-context and linearized fine-tuning conditions. If ablation substantially eliminates graph alignment in the in-context condition but not in the fine-tuned condition, this would directly support the idea that in-context geometry is just an artifact of previous-token mixing while parametric geometry is not.
+- Head-ablation test, extending [11, 12]. Identify previous-token heads and zero-ablate the top-k in both the in-context and linearized fine-tuning conditions. If ablation substantially reduces graph alignment in the in-context condition but not in the fine-tuned condition, this would support the idea that in-context learning geometry is in large part due to previous-token mixing.
 
 
 
