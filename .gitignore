@@ -1,0 +1,6 @@
+venv/
+hf/
+.cache/
+.ipynb_checkpoints/
+.hf_token
+setup.sh
