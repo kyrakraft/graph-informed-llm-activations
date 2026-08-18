@@ -1,11 +1,10 @@
 # graph-informed-llm-activations
+
 Exploring how different methods for providing graph-structured information to an LLM influence its activation space geometry (with activation steering in mind for later).
 
 My hope is that graph-structured knowledge, which is highly structured, will make an LLM's knowledge representation interpretable and steerable.
 
 Currently in exploratory phase. General plan below, subject to change based on exploration results.
-
-I plan to use Gemma-2 (eventually 9B, with 2B as a smaller comparison point. Currently using 2B.) with LoRA for all fine-tuning conditions.
 
 ## Overview of Research Plan
 
