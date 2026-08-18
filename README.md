@@ -1,8 +1,8 @@
 # graph-informed-llm-activations
 
-Exploring how different methods for providing graph-structured information to an LLM influence its activation space geometry (with activation steering in mind for later).
+In this project, I explore how different methods for providing graph-structured information to an LLM influence the LLM's activation space geometry (with activation steering in mind for later).
 
-My hope is that graph-structured knowledge, which is highly structured, will make an LLM's knowledge representation interpretable and steerable.
+My hope is that graph-structured knowledge, which is highly structured, will make an LLM's knowledge representation more interpretable and steerable, which could be beneficial in high-stakes scenarios.
 
 Currently in exploratory phase. General plan below, subject to change based on exploration results.
 
